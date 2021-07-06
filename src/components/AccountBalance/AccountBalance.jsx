@@ -12,11 +12,27 @@ const Section = styled.section`
     padding: 0.25em 1em;
 `;
 
+const ButtonBalance = styled.button`
+    background: navy;
+    border-radius: 3px;
+    border: 2px solid palevioletred;
+    color: palevioletred;
+    margin: 0 1em;
+    padding: 0.25em 1em;
+`;
+
 export default class AccountBalance extends Component {
     render() {
+        const buttonText = this.props.showBalance ? "Hide Balance" : "Show Balance";
+        let content = null;
+        if (this.props.showBalance) {
+            content = <>Balance: ${this.props.amount}</>
+        }
+        let balance = this.props.showBalance ? <span>Balance: ${this.props.amount}</span> : null;
         return (
             <Section>
-             Balance: ${this.props.amount}   
+                {content}
+                <ButtonBalance onClick={this.props.handleToggleShowBalance}>{buttonText}</ButtonBalance>
             </Section>
         );
     }
